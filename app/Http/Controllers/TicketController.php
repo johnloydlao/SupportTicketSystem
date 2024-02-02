@@ -12,11 +12,14 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $userTicketsWithCategories = Ticket::with('categories')
-        ->where('user_id', Auth::id())
-        ->get();
 
-        return view('tickets.index', compact('userTicketsWithCategories'));
+        return view('tickets.index', [
+            'tickets' => Ticket::with('categories')->latest()->filter(request(['search', 'status', 'priority', 'category']))->get(),
+            'categories' => Category::all(),
+            'currentStatus' => request('status'),
+            'currentPriority' => request('priority'),
+            'currentCategory' => Category::firstWhere('name', request('category')),
+        ]);
     }
 
     public function create()
