@@ -14,7 +14,7 @@ class TicketController extends Controller
     {
 
         return view('tickets.index', [
-            'tickets' => Ticket::with('categories')->latest()->filter(request(['search', 'status', 'priority', 'category']))->get(),
+            'tickets' => Ticket::with('categories')->latest()->filter(request(['search', 'status', 'priority', 'category']))->paginate(6)->withQueryString(),
             'categories' => Category::all(),
             'currentStatus' => request('status'),
             'currentPriority' => request('priority'),
@@ -55,5 +55,12 @@ class TicketController extends Controller
         $ticket->labels()->attach($labelIds);
 
         return redirect('/dashboard');
+    }
+
+    public function show(Ticket $ticket)
+    {
+        return view('tickets.show', [
+            'ticket' => $ticket
+        ]);
     }
 }
