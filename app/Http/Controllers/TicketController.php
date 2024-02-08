@@ -35,7 +35,7 @@ class TicketController extends Controller
             'labels' => 'required|array',
             'categories' => 'required|array',
             'priority' => 'required'
-        ]);
+        ]); 
 
         $labelNames = $request->labels;
         $labelIds = Label::whereIn('name', $labelNames)->pluck('id')->toArray();

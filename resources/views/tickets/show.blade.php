@@ -1,13 +1,36 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <h2 class="text-xl font-semibold leading-tight">
-                {{ __('Tickets > My Tickets > ') . $ticket->title }}
-            </h2>
-        </div>
+        <x-header title="Tickets > My Tickets > {{ $ticket->title }}" />
     </x-slot>
 
-    <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        {{ $ticket }}
-    </div>
+    <x-display-area>
+        <div class="flex flex-col">
+            <div>
+                <div class="pb-2 text-lg font-bold"> Ticket#{{ $ticket->id }} - {{ $ticket->title }}</div>
+                <div>
+                    <x-ticket-status-indicator :status="$ticket->status" />
+                    <x-ticket-priority-indicator :priority="$ticket->priority" />
+
+                    @foreach ($ticket->categories as $category)
+                        <span
+                            class=" bg-violet-500 text-white px-2 inline-flex text-xs leading-5 font-semibold rounded-md ">{{ $category->name }}</span>
+                    @endforeach
+
+                    @foreach ($ticket->labels as $label)
+                        <span
+                            class=" bg-pink-500 text-white px-2 inline-flex text-xs leading-5 font-semibold rounded-md ">{{ $label->name }}</span>
+                    @endforeach
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div>{{ $ticket->description }}
+
+            </div>
+
+        </div>
+
+
+    </x-display-area>
 </x-app-layout>
