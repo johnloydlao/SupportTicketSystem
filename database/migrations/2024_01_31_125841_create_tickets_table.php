@@ -17,10 +17,8 @@ return new class extends Migration
             $table->foreignId('assigned_user_agent')->references('id')->on('users')->nullabe();
             $table->string('title');
             $table->text('description');
-            $table->string('files')->nullable();
             $table->enum('priority', ['Low', 'Medium', 'High']);
             $table->enum('status', ['Open', 'Closed'])->default('Open');
-
             $table->timestamps();
         });
     }

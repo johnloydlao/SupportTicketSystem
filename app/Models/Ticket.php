@@ -9,12 +9,10 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'description', 'files', 'priority', 'status'];
+    protected $fillable = ['user_id', 'assigned_user_agent', 'title', 'description', 'priority', 'status'];
 
     public function scopeFilter($query, array $filters)
     {
-
-
 
         $query->when($filters['status'] ?? false, fn ($query, $status) => $query
             ->where('status', 'like', '%' . $status . '%'));
@@ -41,4 +39,13 @@ class Ticket extends Model
     {
         return $this->belongsToMany(Label::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+    
 }

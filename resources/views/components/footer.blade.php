@@ -8,11 +8,7 @@
 
         <span>by</span>
 
-        <a
-            href="https://github.com/Kamona-WD"
-            target="_blank"
-            class="text-blue-600 hover:underline"
-        >
+        <a href="https://github.com/johnloydlao" target="_blank" class="text-blue-600 hover:underline">
             John Loyd Lao
         </a>
     </p>

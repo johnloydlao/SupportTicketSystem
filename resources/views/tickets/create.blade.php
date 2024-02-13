@@ -45,9 +45,9 @@
                 <x-form.error :messages="$errors->get('priority')" />
             </div>
             <div class="space-y-2">
-                <x-form.label for="files" :value="__('Files')" />
-                <x-form.input-files name="files" id="files" class="mt-1" />
-                <x-form.error :messages="$errors->get('files')" />
+                <label for="files">Select files:</label>
+                <input type="file" name="files[]" id="files" multiple>
+                <x-form.error :messages="$errors->get('files[]')" />
             </div>
 
             <div>
