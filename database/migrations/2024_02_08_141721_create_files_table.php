@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
             $table->string('path');
             $table->string('name');
-            $table->unsignedBigInteger('size_kb');
+            $table->unsignedBigInteger('size');
             $table->string('type');
             $table->timestamps();
         });
